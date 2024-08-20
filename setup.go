@@ -192,12 +192,13 @@ func (e *Executor) setupCompiler() error {
 	}
 
 	e.Compiler = &compiler.Compiler{
-		Dir:            e.Dir,
-		Entrypoint:     e.Entrypoint,
-		UserWorkingDir: e.UserWorkingDir,
-		TaskfileEnv:    e.Taskfile.Env,
-		TaskfileVars:   e.Taskfile.Vars,
-		Logger:         e.Logger,
+		Dir:              e.Dir,
+		Entrypoint:       e.Entrypoint,
+		UserWorkingDir:   e.UserWorkingDir,
+		TaskfileRequires: e.Taskfile.Requires,
+		TaskfileEnv:      e.Taskfile.Env,
+		TaskfileVars:     e.Taskfile.Vars,
+		Logger:           e.Logger,
 	}
 	return nil
 }

@@ -22,8 +22,9 @@ type Compiler struct {
 	Entrypoint     string
 	UserWorkingDir string
 
-	TaskfileEnv  *ast.Vars
-	TaskfileVars *ast.Vars
+	TaskfileRequires *ast.Requires
+	TaskfileEnv      *ast.Vars
+	TaskfileVars     *ast.Vars
 
 	Logger *logger.Logger
 
