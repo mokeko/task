@@ -27,6 +27,7 @@ type Taskfile struct {
 	Includes *Includes
 	Set      []string
 	Shopt    []string
+	Requires *Requires
 	Vars     *Vars
 	Env      *Vars
 	Tasks    Tasks
@@ -69,6 +70,7 @@ func (tf *Taskfile) UnmarshalYAML(node *yaml.Node) error {
 			Includes *Includes
 			Set      []string
 			Shopt    []string
+			Requires *Requires
 			Vars     *Vars
 			Env      *Vars
 			Tasks    Tasks
@@ -86,6 +88,7 @@ func (tf *Taskfile) UnmarshalYAML(node *yaml.Node) error {
 		tf.Includes = taskfile.Includes
 		tf.Set = taskfile.Set
 		tf.Shopt = taskfile.Shopt
+		tf.Requires = taskfile.Requires
 		tf.Vars = taskfile.Vars
 		tf.Env = taskfile.Env
 		tf.Tasks = taskfile.Tasks
