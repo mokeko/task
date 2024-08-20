@@ -1,19 +1,12 @@
 package task
 
 import (
-	"fmt"
-
 	"github.com/go-task/task/v3/errors"
 	"github.com/go-task/task/v3/taskfile/ast"
 )
 
 func (e *Executor) areTaskRequiredVarsSet(t *ast.Task, call *ast.Call) error {
-	requires, err := e.Compiler.GetRequires(t, call)
-	if err != nil {
-		return err
-	}
-	fmt.Printf("merged requires: %v\n", requires.Vars)
-	if len(requires.Vars) == 0 {
+	if t.Requires == nil || len(t.Requires.Vars) == 0 {
 		return nil
 	}
 
@@ -23,7 +16,7 @@ func (e *Executor) areTaskRequiredVarsSet(t *ast.Task, call *ast.Call) error {
 	}
 
 	var missingVars []string
-	for _, requiredVar := range requires.Vars {
+	for _, requiredVar := range t.Requires.Vars {
 		if !vars.Exists(requiredVar) {
 			missingVars = append(missingVars, requiredVar)
 		}
