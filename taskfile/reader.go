@@ -289,6 +289,7 @@ func (r *Reader) readNode(node Node) (*ast.Taskfile, error) {
 		if task.Location.Taskfile == "" {
 			task.Location.Taskfile = tf.Location
 		}
+		task.Requires.Merge(tf.Requires)
 	}
 
 	return &tf, nil
