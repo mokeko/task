@@ -44,6 +44,17 @@ func (c *Compiler) FastGetVariables(t *ast.Task, call *ast.Call) (*ast.Vars, err
 	return c.getVariables(t, call, false)
 }
 
+func (c *Compiler) GetRequires(t *ast.Task, call *ast.Call) (*ast.Requires, error) {
+	result := &ast.Requires{}
+	if c.TaskfileRequires != nil {
+		result.Merge(c.TaskfileRequires)
+	}
+	if t != nil {
+		result.Merge(t.Requires)
+	}
+	return result, nil
+}
+
 func (c *Compiler) getVariables(t *ast.Task, call *ast.Call, evaluateShVars bool) (*ast.Vars, error) {
 	result := GetEnviron()
 	if t != nil {
